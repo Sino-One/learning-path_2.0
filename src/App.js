@@ -1,24 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState } from "react";
+import ChatWindow from "./components/ChatWindow";
+import ConversationMenu from "./components/ConversationMenu";
+import "./App.css";
+import Header from "./components/Header";
+import { Routes, Route } from "react-router-dom";
+import CheckAnswer from "./components/CheckAnswer";
 
 function App() {
+  const [selectedConversation, setSelectedConversation] = useState(null);
+  const [conversations, setConversations] = useState([
+    { id: 1, title: "Conversation 1" },
+    { id: 2, title: "Conversation 2" },
+    { id: 3, title: "Conversation 3" },
+  ]);
+
+  const handleSelectConversation = (id) => {
+    setSelectedConversation(id);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="app-container">
+              <ConversationMenu
+                conversations={conversations}
+                onSelectConversation={handleSelectConversation}
+              />
+              <ChatWindow conversationId={selectedConversation} />
+            </div>
+          }
+        />
+        <Route path="/check-answer" element={<CheckAnswer />} />
+      </Routes>
+    </>
   );
 }
 
