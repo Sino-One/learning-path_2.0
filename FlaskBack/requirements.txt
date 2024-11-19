@@ -1,0 +1,1 @@
+pip install flask requests sentence-transformers scikit-learn language-tool-python

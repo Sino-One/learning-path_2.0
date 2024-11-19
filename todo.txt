@@ -1,0 +1,52 @@
+Structure du chatbot pédagogique :
+
+    Implémenter une approche par étapes de résolution de problèmes
+    Intégrer des questions de réflexion guidée
+    Demander aux étudiants d'expliquer leur raisonnement
+    Fournir des indices plutôt que des réponses directes
+
+Fonctionnalités suggérées :
+
+    Journal de bord d'apprentissage
+    Auto-évaluation des compétences
+    Visualisation de la progression
+    Exercices pratiques adaptés au niveau
+
+Pour le pré-prompting :
+    context = """
+    [Contexte pédagogique]
+    Niveau: {niveau_etudiant}
+    Concept: {concept_actuel}
+    Objectif: {objectif_apprentissage}
+
+    [Instructions]
+    1. Guider l'étudiant par des questions
+    2. Demander des explications
+    3. Fournir des indices si nécessaire
+    4. Valoriser le processus de réflexion
+    """
+
+Pour le RAG :
+    - Structurer votre base de connaissances par concepts/compétences
+    - Utiliser des métadonnées pour le contexte pédagogique
+    - Implémenter un système de suivi de progression
+
+Suggestions d'amélioration du RAG :
+
+    Utiliser des embeddings spécialisés pour l'éducation
+    Implémenter un système de filtrage par niveau de difficulté
+    Créer des chunks de contenu adaptés au contexte pédagogique
+
+
+Ce système de suivi permet de :
+
+Suivre la progression individuelle des étudiants
+Adapter le contenu au niveau
+Générer des rapports de progression
+Faire des recommandations personnalisées
+
+Pour l'utiliser efficacement, vous pourriez :
+
+L'intégrer à votre chatbot existant
+L'adapter à vos besoins spécifiques
+Ajouter des métriques supplémentaires
