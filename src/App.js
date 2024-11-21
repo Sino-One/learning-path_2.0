@@ -10,12 +10,13 @@ import CheckAnswer from "./components/CheckAnswer";
 function App() {
   const [selectedConversation, setSelectedConversation] = useState(null);
   const [conversations, setConversations] = useState([
-    { id: 1, title: "Conversation 1" },
+    { id: 42, title: "Conversation 1" },
     { id: 2, title: "Conversation 2" },
     { id: 3, title: "Conversation 3" },
   ]);
 
   const handleSelectConversation = (id) => {
+    console.log("Selected conversation", id);
     setSelectedConversation(id);
   };
 

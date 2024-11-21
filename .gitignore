@@ -23,3 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 /FlaskBack/checkAnswer
+
+/Backend/node_modules
+/Backend/data.db
+
