@@ -41,7 +41,7 @@ const db = new sqlite3.Database("./data.db", (err) => {
     db.run(
       `CREATE TABLE IF NOT EXISTS chat (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
-          chatId TEXT NOT NULL,
+          chatId INTEGER NOT NULL,
           role TEXT NOT NULL,
           content TEXT NOT NULL,
           date TEXT NOT NULL
@@ -109,6 +109,13 @@ app.get("/getChat/:chatId", (req, res) => {
       res.json(rows);
     }
   );
+});
+
+app.get("/getChatsId", (req, res) => {
+  db.all("SELECT DISTINCT chatId FROM chat;", [], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
 });
 
 app.listen(port, () =>

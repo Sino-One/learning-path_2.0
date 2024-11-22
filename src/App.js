@@ -1,5 +1,5 @@
 // src/App.js
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ChatWindow from "./components/ChatWindow";
 import ConversationMenu from "./components/ConversationMenu";
 import "./App.css";
@@ -9,16 +9,26 @@ import CheckAnswer from "./components/CheckAnswer";
 
 function App() {
   const [selectedConversation, setSelectedConversation] = useState(null);
-  const [conversations, setConversations] = useState([
-    { id: 42, title: "Conversation 1" },
-    { id: 2, title: "Conversation 2" },
-    { id: 3, title: "Conversation 3" },
-  ]);
+  const [conversations, setConversations] = useState([]);
 
   const handleSelectConversation = (id) => {
-    console.log("Selected conversation", id);
     setSelectedConversation(id);
   };
+
+  const loadChats = async () => {
+    const response = await fetch("http://localhost:3001/getChatsId");
+    const data = await response.json();
+    setConversations(data);
+  };
+
+  const newChat = async () => {
+    setConversations([...conversations, { chatId: conversations.length + 1 }]);
+    setSelectedConversation(conversations.length + 1);
+  };
+
+  useEffect(() => {
+    loadChats();
+  }, []);
 
   return (
     <>
@@ -31,6 +41,8 @@ function App() {
               <ConversationMenu
                 conversations={conversations}
                 onSelectConversation={handleSelectConversation}
+                selectedConversation={selectedConversation}
+                newChat={newChat}
               />
               <ChatWindow conversationId={selectedConversation} />
             </div>
